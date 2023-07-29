@@ -11,9 +11,17 @@ logging.basicConfig(filename="scrapper.log", level=logging.INFO)
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home_page():
     return render_template("index.html")
+
+@app.route("/review", methods=["GET","POST"])
+def index():
+    if request.method == "POST":
+        return render_template("results.html")
+    else:
+        return render_template("index.html")
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=5000)

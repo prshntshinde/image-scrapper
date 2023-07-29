@@ -18,6 +18,10 @@ def home_page():
 @app.route("/review", methods=["GET","POST"])
 def index():
     if request.method == "POST":
+        try:
+            query = request.form
+        except Exception as e:
+            logging.INFO(e)
         return render_template("results.html")
     else:
         return render_template("index.html")
